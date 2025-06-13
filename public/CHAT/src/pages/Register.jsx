@@ -5,7 +5,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 
-//RADHAKRISHNALOVEPERMANLTUUUUUUU
+//RADHAKRISHNALOVEPERMANLTUUUUUU
 //RADHAKRISHNALOVEUUUMAPERMNANLTUUUUU
 //RADHAKRISHNALOVEUUUMAPERMANTLUUUUUU
 //LOVESHIVAPARVATHIMALOVEUUUUMAPERMALTUUU
@@ -137,6 +137,8 @@ const FormContainer = styled.div`
   transform: translate(-50%, -50%);
   background-color: white;
   border-radius: 10px;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.08);
+
   .brand {
     display: flex;
     flex-direction: column;
@@ -150,6 +152,7 @@ const FormContainer = styled.div`
     flex-direction: column;
     gap: 10px;
     align-items: center;
+    width: 100%;
   }
   input {
     padding: 10px;
@@ -163,7 +166,6 @@ const FormContainer = styled.div`
       border-color: #4caf50;
       background:white;
     }
-       
   }
   button {
     padding: 10px;
@@ -180,6 +182,25 @@ const FormContainer = styled.div`
   }
   span {
     font-size: 14px;
+  }
+
+  @media (max-width: 600px) {
+    width: 95vw;
+    height: auto;
+    min-height: 100vh;
+    border-radius: 0;
+    box-shadow: none;
+    padding: 20px 0;
+    .brand {
+      height: 120px;
+    }
+    input, button {
+      width: 90%;
+      font-size: 15px;
+    }
+    form {
+      gap: 8px;
+    }
   }
 `;
 

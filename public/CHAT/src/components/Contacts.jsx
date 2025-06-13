@@ -64,23 +64,40 @@ export default function Contacts({ contacts, currentUser, changeChat }) {
 
 const Container = styled.div`
   display: grid;
-  grid-template-rows: 10% 75% 15%;
+  grid-template-rows: 12% 73% 15%;
   overflow: hidden;
-  background-color: #080420;
+  background: linear-gradient(135deg, #0d0d30 0%, #23272f 100%);
+  border-radius: 1.2rem 0 0 1.2rem;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.25);
+  border-right: 1.5px solid rgba(255,255,255,0.08);
+  min-width: 270px;
+  max-width: 370px;
+  animation: fadeInSidebar 1.1s cubic-bezier(.39,.575,.565,1) both;
 
   .brand {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 1rem;
+    background: rgba(20, 20, 60, 0.7);
+    box-shadow: 0 2px 12px #4e0eff22;
+    border-bottom: 1px solid #23272f44;
+    animation: fadeInDown 1s cubic-bezier(.39,.575,.565,1);
 
     img {
-      height: 2rem;
+      height: 2.2rem;
+      filter: drop-shadow(0 0 8px #58bc82cc);
+      animation: popInLogo 1.2s cubic-bezier(.39,.575,.565,1) both;
     }
 
     h3 {
-      color: white;
+      color: #fff;
       text-transform: uppercase;
+      letter-spacing: 1.5px;
+      font-weight: 700;
+      font-size: 1.3rem;
+      text-shadow: 0 2px 8px #23272f44;
+      margin: 0;
     }
   }
 
@@ -89,63 +106,151 @@ const Container = styled.div`
     flex-direction: column;
     align-items: center;
     gap: 0.8rem;
-    overflow: auto;
-    padding-bottom: 1rem;
+    overflow-y: auto;
+    padding: 1.2rem 0 1rem 0;
+    scrollbar-width: thin;
+    scrollbar-color: #9a86f3 #23272f;
 
     &::-webkit-scrollbar {
-      width: 0.2rem;
-
-      &-thumb {
-        background-color: #ffffff39;
-      }
+      width: 0.25rem;
+    }
+    &::-webkit-scrollbar-thumb {
+      background-color: #9a86f3;
+      border-radius: 1rem;
     }
 
     .contact {
-      background-color: #ffffff34;
+      background: rgba(255,255,255,0.08);
       cursor: pointer;
-      width: 90%;
-      border-radius: 0.4rem;
-      padding: 0.4rem;
+      width: 92%;
+      border-radius: 0.7rem;
+      padding: 0.6rem 1rem;
       display: flex;
       align-items: center;
-      gap: 1rem;
-      transition: 0.5s ease-in-out;
+      gap: 1.1rem;
+      transition: background 0.3s, box-shadow 0.3s, transform 0.2s;
+      box-shadow: 0 2px 8px #00000011;
+      border: 2px solid transparent;
+      animation: fadeInContact 0.5s cubic-bezier(.39,.575,.565,1);
 
       .avatar img {
-        height: 3rem;
+        height: 2.7rem;
+        width: 2.7rem;
+        border-radius: 50%;
+        background: #fff;
+        box-shadow: 0 2px 8px #4e0eff22;
+        transition: transform 0.2s;
       }
 
       .username h3 {
-        color: white;
+        color: #fff;
+        font-size: 1.08rem;
+        font-weight: 600;
+        margin: 0;
+        letter-spacing: 0.5px;
+        text-shadow: 0 2px 8px #23272f22;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        max-width: 150px;
+      }
+
+      &:hover {
+        background: linear-gradient(90deg, #23272f 60%, #4e0eff33 100%);
+        box-shadow: 0 4px 16px #4e0eff22;
+        transform: scale(1.03);
       }
     }
 
     .contact.selected {
-      background-color: #9a86f3;
+      background: linear-gradient(90deg, #9a86f3 60%, #58bc82 100%);
+      border: 2px solid #58bc82;
+      box-shadow: 0 4px 16px #58bc8244;
+      .username h3 {
+        color: #23272f;
+      }
     }
   }
 
   .current-user {
-    background-color: #0d0d30;
+    background: linear-gradient(90deg, #181929 60%, #23272f 100%);
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 2rem;
+    gap: 1.2rem;
+    border-top: 1px solid #23272f44;
+    box-shadow: 0 -2px 12px #4e0eff11;
+    padding: 1.1rem 0 1.1rem 0;
+    animation: fadeInUp 1.1s cubic-bezier(.39,.575,.565,1);
 
     .avatar img {
-      height: 4rem;
-      max-inline-size: 100%;
+      height: 3.2rem;
+      width: 3.2rem;
+      border-radius: 50%;
+      background: #fff;
+      box-shadow: 0 2px 8px #58bc8244;
+      border: 2px solid #9a86f3;
+      transition: transform 0.2s;
     }
 
     .username h2 {
-      color: white;
+      color: #fff;
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin: 0;
+      letter-spacing: 1px;
+      text-shadow: 0 2px 8px #23272f44;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      max-width: 150px;
     }
+  }
 
-    @media screen and (min-width: 720px) and (max-width: 1080px) {
-      gap: 0.5rem;
-      .username h2 {
-        font-size: 1rem;
-      }
-    }
+  /* Animations */
+  @keyframes fadeInSidebar {
+    0% { opacity: 0; transform: translateX(-30px);}
+    100% { opacity: 1; transform: translateX(0);}
+  }
+  @keyframes fadeInDown {
+    0% { opacity: 0; transform: translateY(-30px);}
+    100% { opacity: 1; transform: translateY(0);}
+  }
+  @keyframes fadeInUp {
+    0% { opacity: 0; transform: translateY(30px);}
+    100% { opacity: 1; transform: translateY(0);}
+  }
+  @keyframes popInLogo {
+    0% { opacity: 0; transform: scale(0.7);}
+    80% { opacity: 1; transform: scale(1.08);}
+    100% { opacity: 1; transform: scale(1);}
+  }
+  @keyframes fadeInContact {
+    0% { opacity: 0; transform: translateY(10px);}
+    100% { opacity: 1; transform: translateY(0);}
+  }
+
+  /* Responsive */
+  @media (max-width: 900px) {
+    min-width: 180px;
+    max-width: 240px;
+    border-radius: 0.7rem 0 0 0.7rem;
+    .brand h3 { font-size: 1.05rem; }
+    .contacts .contact .username h3,
+    .current-user .username h2 { max-width: 80px; font-size: 1rem; }
+    .contacts .contact .avatar img,
+    .current-user .avatar img { height: 2.1rem; width: 2.1rem; }
+  }
+  @media (max-width: 600px) {
+    min-width: 90px;
+    max-width: 100vw;
+    border-radius: 0.3rem 0 0 0.3rem;
+    .brand h3 { font-size: 0.9rem; }
+    .contacts .contact .username h3,
+    .current-user .username h2 { max-width: 50px; font-size: 0.85rem; }
+    .contacts .contact .avatar img,
+    .current-user .avatar img { height: 1.3rem; width: 1.3rem; }
+    .contacts { padding: 0.5rem 0 0.5rem 0; }
+    .current-user { padding: 0.5rem 0 0.5rem 0; }
   }
 `;

@@ -607,84 +607,190 @@ function Register() {
       <ToastContainer position="top-right" autoClose={3000} />
     </>)
 }
+// const Form = styled.div`
+// postition:relative;
+// translate:40rem;
+// .form {
+//   --bg-light: #efefef;
+//   --bg-dark: #707070;
+//   --clr: #58bc82;
+//   --clr-alpha: #9c9c9c60;
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+//   gap: 1rem;
+//   width: 100%;
+//   max-width: 300px;
+// }
+
+// .form .input-span {
+//   width: 100%;
+//   display: flex;
+//   flex-direction: column;
+//   gap: 0.5rem;
+// }
+
+// .form input[type="text"],
+// .form input[type="password"] {
+//   border-radius: 0.5rem;
+//   padding: 1rem 0.75rem;
+//   width: 100%;
+//   border: none;
+//   display: flex;
+//   align-items: center;
+//   gap: 0.5rem;
+//   background-color: var(--clr-alpha);
+//   outline: 2px solid var(--bg-dark);
+// }
+
+// .form input[type="email"]:focus,
+// .form input[type="password"]:focus {
+//   outline: 2px solid var(--clr);
+// }
+
+// .label {
+//   align-self: flex-start;
+//   color: var(--clr);
+//   font-weight: 600;
+// }
+
+// .form .submit {
+//   padding: 1rem 0.75rem;
+//   width: 100%;
+//   display: flex;
+//   align-items: center;
+//   gap: 0.5rem;
+//   border-radius: 3rem;
+//   background-color: var(--bg-dark);
+//   color: var(--bg-light);
+//   border: none;
+//   cursor: pointer;
+//   transition: all 300ms;
+//   font-weight: 600;
+//   font-size: 0.9rem;
+// }
+
+// .form .submit:hover {
+//   background-color: var(--clr);
+//   color: var(--bg-dark);
+// }
+
+// .span {
+//   text-decoration: none;
+//   color: var(--bg-dark);
+// }
+
+// .span a {
+//   color: var(--clr);
+// }
+
+// `
 const Form = styled.div`
-postition:relative;
-translate:40rem;
-.form {
-  --bg-light: #efefef;
-  --bg-dark: #707070;
-  --clr: #58bc82;
-  --clr-alpha: #9c9c9c60;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
   display: flex;
-  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  gap: 1rem;
-  width: 100%;
-  max-width: 300px;
-}
+  background: #23272f;
+  z-index: 1;
 
-.form .input-span {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
+  .form {
+    background: #fff;
+    border-radius: 20px;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.08);
+    padding: 2.5rem 2rem 2rem 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 320px;
+    max-width: 400px;
+    width: 100%;
+    gap: 1.2rem;
+  }
 
-.form input[type="text"],
-.form input[type="password"] {
-  border-radius: 0.5rem;
-  padding: 1rem 0.75rem;
-  width: 100%;
-  border: none;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  background-color: var(--clr-alpha);
-  outline: 2px solid var(--bg-dark);
-}
+  .input-span {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
 
-.form input[type="email"]:focus,
-.form input[type="password"]:focus {
-  outline: 2px solid var(--clr);
-}
+  .label {
+    color: #58bc82;
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin-bottom: 0.2rem;
+    margin-left: 0.2rem;
+  }
 
-.label {
-  align-self: flex-start;
-  color: var(--clr);
-  font-weight: 600;
-}
+  .input-field {
+    border-radius: 8px;
+    padding: 0.8rem 1rem;
+    width: 100%;
+    border: none;
+    background: #181929;
+    color: #eee;
+    font-size: 1rem;
+    outline: none;
+    transition: box-shadow 0.2s;
+    box-shadow: 0 0 0 2px #23272f;
+  }
+  .input-field:focus {
+    box-shadow: 0 0 0 2px #58bc82;
+    background: #23272f;
+  }
 
-.form .submit {
-  padding: 1rem 0.75rem;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  border-radius: 3rem;
-  background-color: var(--bg-dark);
-  color: var(--bg-light);
-  border: none;
-  cursor: pointer;
-  transition: all 300ms;
-  font-weight: 600;
-  font-size: 0.9rem;
-}
+  .submit {
+    margin-top: 0.5rem;
+    padding: 0.8rem 0;
+    width: 100%;
+    border-radius: 8px;
+    border: none;
+    background: #707070;
+    color: #fff;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+  }
+  .submit:hover {
+    background: #58bc82;
+    color: #23272f;
+  }
 
-.form .submit:hover {
-  background-color: var(--clr);
-  color: var(--bg-dark);
-}
+  .span {
+    width: 100%;
+    text-align: center;
+    color: #707070;
+    font-size: 1rem;
+    margin-top: 0.5rem;
+  }
+  .span a {
+    color: #58bc82;
+    text-decoration: none;
+    font-weight: 600;
+    margin-left: 0.2rem;
+  }
 
-.span {
-  text-decoration: none;
-  color: var(--bg-dark);
-}
-
-.span a {
-  color: var(--clr);
-}
-
-`
+  @media (max-width: 500px) {
+    .form {
+      min-width: 0;
+      width: 95vw;
+      padding: 1.2rem 0.5rem;
+      border-radius: 12px;
+    }
+    .label, .span {
+      font-size: 0.98rem;
+    }
+    .input-field, .submit {
+      font-size: 1rem;
+      padding: 0.7rem 0.7rem;
+    }
+  }
+`;
 export default Register;
 
 
