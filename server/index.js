@@ -32,7 +32,7 @@ const server = app.listen(process.env.PORT, () => {
 const io = socket(server, {
     cors: {
         // origin: "https://ksvid-chat.netlify.app"
-        origin:"https://mnrkpslvidata.netlify.app/", // same port as frontend
+        origin:"https://mnrkpslvidata.netlify.app", // same port as frontend
         credentials: true,
     },
 });

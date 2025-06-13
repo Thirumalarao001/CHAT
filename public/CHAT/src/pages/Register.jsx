@@ -37,10 +37,11 @@ function Register() {
         }
         else {
           toast.error(data.message);
+          console.log("Registration failed");
         }
       }
       catch (error) {
-        toast.error(error.message);
+        toast.error(error.message,"HII");
       }
     }
     console.log("Form submitted successfully");

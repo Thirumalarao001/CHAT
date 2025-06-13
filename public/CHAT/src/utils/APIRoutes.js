@@ -1,6 +1,6 @@
 // AMMANANNASHIVAPARVATHIVINBYAAKARADHAKRISHNALOVEPERMANTLUUUUTHAMMUDHUANUHYAARACHANANANNADHALUPERMNANTLUUUU
 
-export const host = "http://localhost:5000";
+export const host = "https://kirety-ksvid-chat.onrender.com";
 
 export const regiterRoute = `${host}/api/auth/register`
 export const loginRoute = `${host}/api/auth/login`
