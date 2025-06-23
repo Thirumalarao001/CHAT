@@ -4,7 +4,6 @@ import React, { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import ChatInput from './ChatInput';
 import axios from 'axios';
-// import { getAllMessagesRoute, sendMessageRoute } from '../utils/APIRoutes';
 
 export default function ChatContainer({ currentChat, currentUser, socket }) {
   const [messages, setMessages] = useState([]);
@@ -14,11 +13,21 @@ export default function ChatContainer({ currentChat, currentUser, socket }) {
   useEffect(() => {
     const fetchMessages = async () => {
       if (currentChat) {
-        const response = await axios.post(getAllMessagesRoute, {
-          from: currentUser._id,
-          to: currentChat._id,
-        });
-        setMessages(response.data.data);
+        try {
+          const response = await axios.post(getMessagesRoute, {
+            from: currentUser._id,
+            to: currentChat._id,
+          });
+
+          console.log("📥 Message response:", response.data);
+
+          // Use fallback in case response shape varies
+          const msgs = response.data?.data || response.data || [];
+          setMessages(msgs);
+        } catch (error) {
+          console.error("❌ Error fetching messages:", error);
+          setMessages([]);
+        }
       }
     };
     fetchMessages();
@@ -66,7 +75,7 @@ export default function ChatContainer({ currentChat, currentUser, socket }) {
       </div>
 
       <div className="chat-messages">
-        {messages.map((msg, index) => (
+        {(messages || []).map((msg, index) => (
           <div
             ref={scrollRef}
             key={index}

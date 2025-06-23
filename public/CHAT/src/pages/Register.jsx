@@ -33,7 +33,7 @@ function Register() {
         if (data) {
           // console.log("RADHAKRISHNALOVEPERMANLTUUUUUU");
           localStorage.setItem('chat-app-user', JSON.stringify(data.user_saved))
-          navigate('/login');
+          navigate('/');
         }
         else {
           toast.error(data.message);

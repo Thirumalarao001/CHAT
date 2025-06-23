@@ -63,16 +63,20 @@ export default function Contacts({ contacts, currentUser, changeChat }) {
 }
 
 const Container = styled.div`
-  display: grid;
-  grid-template-rows: 12% 73% 15%;
-  overflow: hidden;
-  background: linear-gradient(135deg, #0d0d30 0%, #23272f 100%);
-  border-radius: 1.2rem 0 0 1.2rem;
-  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.25);
-  border-right: 1.5px solid rgba(255,255,255,0.08);
-  min-width: 270px;
-  max-width: 370px;
-  animation: fadeInSidebar 1.1s cubic-bezier(.39,.575,.565,1) both;
+  display: flex
+;
+    grid-template-rows: 12% 73% 15%;
+    overflow: hidden;
+    height: 100%;
+    flex-direction: column;
+    background: linear-gradient(135deg, #0d0d30 0%, #23272f 100%);
+    border-radius: 1.2rem 0 0 1.2rem;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.25);
+    border-right: 1.5px solid rgba(255, 255, 255, 0.08);
+    min-width: 270px;
+    max-width: 370px;
+    justify-content: space-between;
+    animation: fadeInSidebar 1.1s cubic-bezier(.39,.575,.565,1) both;
 
   .brand {
     display: flex;
