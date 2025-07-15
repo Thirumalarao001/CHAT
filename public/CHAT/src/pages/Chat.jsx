@@ -114,6 +114,24 @@ const Container = styled.div`
     flex: 1;
     transition: all 0.3s ease;
     background: #0d0d2b;
+    display: flex;
+    flex-direction: column;
+    padding: 1.2rem 0.5rem 1.2rem 0.5rem;
+    border-right: 2px solid #23234a;
+    box-shadow: 2px 0 16px 0 #00000022;
+    min-width: 220px;
+    max-width: 320px;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #4f8cff #181824;
+  }
+  .contacts-panel::-webkit-scrollbar {
+    width: 7px;
+    background: #181824;
+  }
+  .contacts-panel::-webkit-scrollbar-thumb {
+    background: #4f8cff;
+    border-radius: 8px;
   }
 
   .chat-box {

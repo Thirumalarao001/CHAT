@@ -124,18 +124,15 @@ const Container = styled.div`
     }
 
     .contact {
-      background: rgba(255,255,255,0.08);
-      cursor: pointer;
-      width: 92%;
-      border-radius: 0.7rem;
-      padding: 0.6rem 1rem;
       display: flex;
       align-items: center;
-      gap: 1.1rem;
-      transition: background 0.3s, box-shadow 0.3s, transform 0.2s;
-      box-shadow: 0 2px 8px #00000011;
-      border: 2px solid transparent;
-      animation: fadeInContact 0.5s cubic-bezier(.39,.575,.565,1);
+      gap: 1rem;
+      padding: 0.7rem 1rem;
+      margin-bottom: 0.5rem;
+      border-radius: 0.7rem;
+      background: transparent;
+      cursor: pointer;
+      transition: background 0.2s;
 
       .avatar img {
         height: 2.7rem;

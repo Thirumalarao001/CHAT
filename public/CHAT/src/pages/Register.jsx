@@ -126,81 +126,105 @@ function Register() {
 }
 
 const FormContainer = styled.div`
-  height: 500px;
-  width: 500px;
+  min-height: 100vh;
+  width: 100vw;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: white;
-  border-radius: 10px;
-  box-shadow: 0 2px 16px rgba(0,0,0,0.08);
+  background: linear-gradient(135deg, #131324 60%, #4caf50 100%);
+  font-family: 'Josefin Sans', sans-serif;
+
+  form {
+    background: #fff;
+    padding: 2.5rem 2rem 2rem 2rem;
+    border-radius: 18px;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.18);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 320px;
+    max-width: 350px;
+    width: 100%;
+    gap: 1.1rem;
+  }
 
   .brand {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 10px;
-    height: 200px;
-    justify-content: center;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+    img {
+      height: 60px;
+      width: 60px;
+    }
+    h1 {
+      font-size: 1.7rem;
+      color: #131324;
+      letter-spacing: 2px;
+      margin: 0;
+    }
   }
-  form {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    align-items: center;
-    width: 100%;
-  }
+
   input {
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    width: 80%;
-    color: black;
-    font-size: 16px;
+    width: 100%;
+    padding: 0.8rem 1rem;
+    border: 1px solid #d1d1d1;
+    border-radius: 7px;
+    font-size: 1rem;
+    background: #f7f7f7;
+    color: #131324;
+    transition: border 0.2s;
     &:focus {
+      border: 1.5px solid #4caf50;
+      background: #fff;
       outline: none;
-      border-color: #4caf50;
-      background:white;
     }
   }
+
   button {
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: #4caf50;
-    color: white;
-    width: 80%;
-    font-size: 16px;
+    width: 100%;
+    padding: 0.8rem 1rem;
+    border: none;
+    border-radius: 7px;
+    background: linear-gradient(90deg, #4caf50 60%, #388e3c 100%);
+    color: #fff;
+    font-size: 1.1rem;
+    font-weight: 600;
     cursor: pointer;
+    margin-top: 0.5rem;
+    transition: background 0.2s;
     &:hover {
-      background-color: #45a049;
+      background: linear-gradient(90deg, #388e3c 60%, #4caf50 100%);
     }
   }
+
   span {
-    font-size: 14px;
+    font-size: 0.97rem;
+    color: #333;
+    margin-top: 0.5rem;
+    a {
+      color: #4caf50;
+      text-decoration: none;
+      font-weight: 600;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
   }
 
   @media (max-width: 600px) {
-    width: 95vw;
-    height: auto;
-    min-height: 100vh;
-    border-radius: 0;
-    box-shadow: none;
-    padding: 20px 0;
-    .brand {
-      height: 120px;
-    }
-    input, button {
-      width: 90%;
-      font-size: 15px;
-    }
     form {
-      gap: 8px;
+      min-width: 90vw;
+      max-width: 95vw;
+      padding: 1.5rem 0.5rem;
+    }
+    .brand img {
+      height: 45px;
+      width: 45px;
+    }
+    .brand h1 {
+      font-size: 1.2rem;
     }
   }
 `;
