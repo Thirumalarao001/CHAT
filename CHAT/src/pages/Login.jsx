@@ -14,10 +14,15 @@ import { Link, useNavigate } from "react-router-dom";
 import { loginRoute } from "../utils/APIRoutes";
 import Logo from "../assets/react.svg";
 
-// ---- Change these to your preferred color(s) ----
-const mainColor = "#4f8cff"; // softer blue accent
-const mainGradient = "linear-gradient(135deg, #23272f 60%, #4f8cff 100%)"; // blue gradient
-// ------------------------------------------------
+// ---- Professional Color Scheme ----
+const primaryColor = "#2563eb"; // Professional blue
+const secondaryColor = "#1e40af"; // Darker blue
+const accentColor = "#3b82f6"; // Light blue accent
+const textColor = "#1f2937"; // Dark gray
+const lightGray = "#f8fafc"; // Very light gray
+const mediumGray = "#e2e8f0"; // Medium gray
+const backgroundGradient = "linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%)"; // Subtle gray gradient
+// ----------------------------------------
 
 function Login() {
   const navigate = useNavigate();
@@ -118,67 +123,75 @@ function Login() {
 }
 
 // --- Styled Components and Animations ---
-const spinBounce = keyframes`
-  0%   { transform: scale(1) rotate(0deg); }
-  30%  { transform: scale(1.15) rotate(12deg); }
-  50%  { transform: scale(1.08) rotate(-8deg); }
-  70%  { transform: scale(1.12) rotate(8deg);}
-  100% { transform: scale(1) rotate(0deg);}
+const subtleFloat = keyframes`
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-3px); }
 `;
 
 const fadeInUp = keyframes`
-  0% { opacity: 0; transform: translateY(40px);}
+  0% { opacity: 0; transform: translateY(20px);}
   100% { opacity: 1; transform: translateY(0);}
 `;
 
 const StyledBG = styled.div`
   min-height: 100vh;
   width: 100vw;
-  background: ${mainGradient};
+  background: ${backgroundGradient};
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
-  position: relative;
+  padding: 2rem 1rem;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 `;
 
 const GlassCard = styled.div`
-  background: rgba(255,255,255,0.18);
-  border-radius: 1.5rem;
-  box-shadow: 0 8px 32px 0 rgba(90, 124, 255, 0.10);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1.5px solid rgba(90,124,255,0.10);
-  padding: 2.2rem 1.5rem 1.5rem 1.5rem;
-  min-width: 320px;
-  max-width: 350px;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  border: 1px solid ${mediumGray};
+  padding: 3rem 2.5rem 2.5rem 2.5rem;
+  min-width: 400px;
+  max-width: 450px;
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  animation: ${fadeInUp} 1s cubic-bezier(.68,-0.55,.27,1.55);
+  animation: ${fadeInUp} 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 4px;
+    background: linear-gradient(90deg, ${primaryColor}, ${accentColor});
+    border-radius: 0 0 4px 4px;
+  }
 
   .heading {
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    color: #23272f;
-    font-size: 1.5rem;
-    font-weight: 800;
-    letter-spacing: 2px;
-    margin-bottom: 1.2rem;
-    margin-top: 0.2rem;
-    text-shadow: 0 2px 12px #bfcaff80;
+    color: ${textColor};
+    font-size: 1.75rem;
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    margin-bottom: 2rem;
+    margin-top: 1rem;
     text-align: center;
-    font-family: 'Josefin Sans', sans-serif;
-    animation: ${fadeInUp} 1.2s cubic-bezier(.68,-0.55,.27,1.55);
+    font-family: 'Inter', sans-serif;
+    line-height: 1.2;
   }
+
   .form {
     width: 100%;
     display: flex;
     flex-direction: column;
-    gap: 1.1rem;
+    gap: 1.5rem;
     align-items: center;
   }
 
@@ -186,61 +199,83 @@ const GlassCard = styled.div`
     width: 100%;
     display: flex;
     flex-direction: column;
-    gap: 0.3rem;
+    gap: 0.5rem;
   }
 
   .label {
-    color: ${mainColor};
+    color: ${textColor};
     font-weight: 600;
-    font-size: 1.08rem;
-    margin-bottom: 0.1rem;
-    margin-left: 0.2rem;
-    letter-spacing: 1px;
+    font-size: 0.95rem;
+    margin-bottom: 0.25rem;
+    margin-left: 0.125rem;
+    letter-spacing: 0.025em;
   }
 
   .input-field {
     border-radius: 8px;
-    padding: 0.8rem 1rem;
+    padding: 0.875rem 1rem;
     width: 100%;
-    border: 1px solid #e0e4fa;
-    background: #f7f8fd;
-    color: #23272f;
-    font-size: 1.05rem;
+    border: 2px solid ${mediumGray};
+    background: ${lightGray};
+    color: ${textColor};
+    font-size: 1rem;
     outline: none;
-    transition: border 0.2s;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
     font-family: inherit;
-  }
-  .input-field:focus {
-    border: 1.5px solid ${mainColor};
-    background: #fff;
+    box-sizing: border-box;
+
+    &::placeholder {
+      color: #9ca3af;
+    }
+
+    &:focus {
+      border-color: ${primaryColor};
+      background: #ffffff;
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+    }
+
+    &:hover:not(:focus) {
+      border-color: #cbd5e1;
+    }
   }
 
   .submit {
-    margin-top: 0.5rem;
-    padding: 0.85rem 0;
+    margin-top: 1rem;
+    padding: 0.875rem 2rem;
     width: 100%;
-    border-radius: 10px;
+    border-radius: 8px;
     border: none;
-    background: linear-gradient(90deg, ${mainColor} 60%, #bfcaff 100%);
-    color: #fff;
-    font-size: 1.12rem;
-    font-weight: 700;
+    background: linear-gradient(135deg, ${primaryColor} 0%, ${secondaryColor} 100%);
+    color: #ffffff;
+    font-size: 1rem;
+    font-weight: 600;
     cursor: pointer;
-    position: relative;
-    overflow: hidden;
-    transition: background 0.2s, color 0.2s, transform 0.2s;
-    box-shadow: 0 4px 16px 0 #bfcaff40;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 0.7rem;
-    will-change: transform;
+    letter-spacing: 0.025em;
+    position: relative;
+    overflow: hidden;
+
+    &:hover {
+      background: linear-gradient(135deg, ${secondaryColor} 0%, ${primaryColor} 100%);
+      transform: translateY(-1px);
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    }
+
+    &:active {
+      transform: translateY(0);
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    }
+
+    &:focus {
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+    }
   }
-  .submit:hover {
-    background: linear-gradient(90deg, #bfcaff 40%, ${mainColor} 100%);
-    color: #23272f;
-    transform: scale(1.03) perspective(120px) rotateX(4deg);
-  }
+
   .submit .glow {
     display: none;
   }
@@ -248,29 +283,50 @@ const GlassCard = styled.div`
   .span {
     width: 100%;
     text-align: center;
-    color: #23272f;
-    font-size: 1rem;
-    margin-top: 0.5rem;
-    text-shadow: 0 1px 8px #bfcaff40;
+    color: #6b7280;
+    font-size: 0.95rem;
+    margin-top: 1.5rem;
+    line-height: 1.5;
   }
+
   .span a {
-    color: ${mainColor};
+    color: ${primaryColor};
     text-decoration: none;
-    font-weight: 700;
-    margin-left: 0.2rem;
-    transition: color 0.2s;
-  }
-  .span a:hover {
-    color: #23272f;
-    text-shadow: 0 0 8px ${mainColor};
+    font-weight: 600;
+    margin-left: 0.25rem;
+    transition: color 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    
+    &:hover {
+      color: ${secondaryColor};
+      text-decoration: underline;
+    }
+
+    &:focus {
+      outline: 2px solid ${primaryColor};
+      outline-offset: 2px;
+      border-radius: 2px;
+    }
   }
 
   @media (max-width: 500px) {
     min-width: 0;
-    width: 97vw;
-    padding: 1.2rem 0.5rem;
-    border-radius: 1.2rem;
-    .heading { font-size: 1.1rem; }
+    width: 100%;
+    max-width: 380px;
+    padding: 2rem 1.5rem;
+    border-radius: 12px;
+    
+    .heading { 
+      font-size: 1.5rem; 
+      margin-bottom: 1.5rem;
+    }
+    
+    .input-field {
+      padding: 0.75rem 0.875rem;
+    }
+    
+    .submit {
+      padding: 0.75rem 1.5rem;
+    }
   }
 `;
 
@@ -278,13 +334,18 @@ const AnimatedLogo = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 0.7rem;
+  margin-bottom: 1rem;
+  
   img {
-    width: 60px;
-    height: 60px;
-    filter: drop-shadow(0 0 16px ${mainColor}80);
-    animation: ${spinBounce} 2.2s cubic-bezier(.68,-0.55,.27,1.55) infinite;
-    will-change: transform;
+    width: 48px;
+    height: 48px;
+    filter: drop-shadow(0 4px 6px rgba(37, 99, 235, 0.2));
+    animation: ${subtleFloat} 4s ease-in-out infinite;
+    transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    
+    &:hover {
+      transform: scale(1.05);
+    }
   }
 `;
 export default Login;
