@@ -30,7 +30,7 @@ const server = app.listen(process.env.PORT || 5000, () => {
 
 const io = socket(server, {
     cors: {
-        origin: "http://localhost:5173", // ✅ frontend origin
+        origin: "https://nmkrspvlidata.netlify.app", // ✅ frontend origin
         credentials: true,
     },
 });
