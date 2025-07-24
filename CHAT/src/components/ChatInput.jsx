@@ -1,6 +1,6 @@
 // RADHAKRISHNALOVEPERMANTLUUUUUU
-
-import React, { useState } from "react";
+// AMMANANNANMKRSPVLIDATAOPERMAENTN
+import React, { useState, useRef, useEffect } from "react";
 import styled from "styled-components";
 import Picker from "emoji-picker-react";
 import { IoMdSend } from "react-icons/io";
@@ -9,44 +9,72 @@ import { BsEmojiSmile } from "react-icons/bs";
 export default function ChatInput({ handleSendMsg }) {
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
   const [msg, setMsg] = useState("");
+  const emojiPickerRef = useRef(null);
+  const emojiBtnRef = useRef(null);
 
   const toggleEmojiPicker = () => {
-    setShowEmojiPicker(!showEmojiPicker);
+    setShowEmojiPicker((prev) => !prev);
   };
 
   const handleEmojiClick = (emojiObject) => {
-    setMsg(prevMsg => prevMsg + emojiObject.emoji);
+    setMsg((prevMsg) => prevMsg + emojiObject.emoji);
   };
+
+  // Close emoji picker when clicking outside
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (
+        emojiPickerRef.current &&
+        !emojiPickerRef.current.contains(event.target) &&
+        emojiBtnRef.current &&
+        !emojiBtnRef.current.contains(event.target)
+      ) {
+        setShowEmojiPicker(false);
+      }
+    }
+    if (showEmojiPicker) {
+      document.addEventListener("mousedown", handleClickOutside);
+    } else {
+      document.removeEventListener("mousedown", handleClickOutside);
+    }
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [showEmojiPicker]);
 
   const sendChat = (e) => {
     e.preventDefault();
-
     if (msg.trim().length > 0) {
-      console.log("Sending message:", msg);
       handleSendMsg(msg);
-      setMsg(""); // clear input after sending
+      setMsg("");
     }
   };
 
- return (
-  <Container>
-    <form className="input-container" onSubmit={sendChat}>
-      <div className="emoji">
-        <BsEmojiSmile onClick={toggleEmojiPicker} />
-        {showEmojiPicker && <Picker onEmojiClick={handleEmojiClick} />}
-      </div>
-      <input
-        type="text"
-        placeholder="Type your message here"
-        value={msg}
-        onChange={(e) => setMsg(e.target.value)}
-      />
-      <button type="submit" className="submit">
-        <IoMdSend />
-      </button>
-    </form>
-  </Container>
-);
+  return (
+    <Container>
+      <form className="input-container" onSubmit={sendChat}>
+        <div className="emoji">
+          <span ref={emojiBtnRef}>
+            <BsEmojiSmile onClick={toggleEmojiPicker} />
+          </span>
+          {showEmojiPicker && (
+            <div ref={emojiPickerRef}>
+              <Picker onEmojiClick={handleEmojiClick} />
+            </div>
+          )}
+        </div>
+        <input
+          type="text"
+          placeholder="Type your message here"
+          value={msg}
+          onChange={(e) => setMsg(e.target.value)}
+        />
+        <button type="submit" className="submit">
+          <IoMdSend />
+        </button>
+      </form>
+    </Container>
+  );
 }
 const Container = styled.div`
   width: 100%;
