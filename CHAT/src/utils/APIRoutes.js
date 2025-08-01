@@ -1,8 +1,7 @@
 // AMMANANNASHIVAPARVATHIVINBYAAKARADHAKRISHNALOVEPERMANTLUUUUTHAMMUDHUANUHYAARACHANANANNADHALUPERMNANTLUUUU
 
 export const host = "";
-// export const host = "http://localhost:5000"; // Change this to your server URL
-
+ 
 export const regiterRoute = `${host}/api/auth/register`
 export const loginRoute = `${host}/api/auth/login`
 export const setAvatarRoute = `${host}/api/auth/setAvatar`
