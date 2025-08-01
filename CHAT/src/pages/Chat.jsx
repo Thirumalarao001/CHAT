@@ -1,14 +1,14 @@
 // radhakrishnalovepermanentshivaparavathivinyakasitaramalovepermanenltuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu
 
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState, useRef } from "react";
 import styled from "styled-components";
-import { useNavigate } from 'react-router-dom';
-import Contacts from '../components/Contacts';
-import ChatContainer from '../components/ChatContainer';
-import axios from 'axios';
+import { useNavigate } from "react-router-dom";
+import Contacts from "../components/Contacts";
+import ChatContainer from "../components/ChatContainer";
+import axios from "axios";
 import { allUsersRoute, host } from "../utils/APIRoutes";
 import robot from "../assets/robot.gif";
-import { io } from 'socket.io-client';
+import { io } from "socket.io-client";
 
 const Container = styled.div`
   min-height: 100vh;
@@ -17,7 +17,7 @@ const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+  font-family: "Inter", "Segoe UI", Arial, sans-serif;
 
   .chat-shell {
     width: 96vw;
@@ -102,8 +102,14 @@ const Container = styled.div`
   }
 
   @keyframes fadeIn {
-    from { opacity: 0; transform: scale(0.95);}
-    to { opacity: 1; transform: scale(1);}
+    from {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
   }
 
   @media (max-width: 900px) {
@@ -144,9 +150,9 @@ export default function Chat() {
 
   useEffect(() => {
     const checkUser = async () => {
-      const user = localStorage.getItem('chat-app-user');
+      const user = localStorage.getItem("chat-app-user");
       if (!user) {
-        navigate('/login');
+        navigate("/");
       } else {
         const storedUser = JSON.parse(user);
         setCurrentUser(storedUser);
@@ -159,7 +165,7 @@ export default function Chat() {
   useEffect(() => {
     if (currentUser) {
       socket.current = io(host);
-      socket.current.emit('add-user', currentUser._id);
+      socket.current.emit("add-user", currentUser._id);
     }
   }, [currentUser]);
 
@@ -167,38 +173,61 @@ export default function Chat() {
     const fetchContacts = async () => {
       if (currentUser && currentUser.isAvatarImageSet) {
         try {
-          const { data } = await axios.get(`${allUsersRoute}/${currentUser._id}`);
+          const { data } = await axios.get(
+            `${allUsersRoute}/${currentUser._id}`
+          );
           setContacts(data.data);
         } catch (error) {
-          console.error('Failed to fetch contacts', error);
+          console.error("Failed to fetch contacts", error);
         }
       } else if (currentUser) {
-        navigate('/avatar');
+        navigate("/avatar");
       }
     };
     fetchContacts();
   }, [currentUser, navigate]);
 
-  if (isLoading) return <h2 style={{ color: '#2563eb', textAlign: 'center', fontWeight: 500 }}>Loading...</h2>;
-  if (!currentUser) return <h2 style={{ color: '#2563eb', textAlign: 'center', fontWeight: 500 }}>No user found. Please log in.</h2>;
+  if (isLoading)
+    return (
+      <h2 style={{ color: "#2563eb", textAlign: "center", fontWeight: 500 }}>
+        Loading...
+      </h2>
+    );
+  if (!currentUser)
+    return (
+      <h2 style={{ color: "#2563eb", textAlign: "center", fontWeight: 500 }}>
+        No user found. Please log in.
+      </h2>
+    );
 
   return (
     <Container>
       <div className="chat-shell">
         {/* Contacts List */}
-        <div className={`contacts-panel ${currentChat ? 'hide-on-chat' : ''}`}>
-          <Contacts contacts={contacts} currentUser={currentUser} changeChat={handleChatChange} />
+        <div className={`contacts-panel ${currentChat ? "hide-on-chat" : ""}`}>
+          <Contacts
+            contacts={contacts}
+            currentUser={currentUser}
+            changeChat={handleChatChange}
+          />
         </div>
 
         {/* Chat Container */}
-        <div className={`chat-box ${currentChat ? 'show-chat' : ''}`}>
+        <div className={`chat-box ${currentChat ? "show-chat" : ""}`}>
           {currentChat && (
-            <button className="back-btn" onClick={() => setCurrentChat(undefined)}>
+            <button
+              className="back-btn"
+              onClick={() => setCurrentChat(undefined)}
+            >
               &#8592;
             </button>
           )}
           {currentChat ? (
-            <ChatContainer currentChat={currentChat} currentUser={currentUser} socket={socket} />
+            <ChatContainer
+              currentChat={currentChat}
+              currentUser={currentUser}
+              socket={socket}
+            />
           ) : (
             <img src={robot} alt="robot" />
           )}
