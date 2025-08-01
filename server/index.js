@@ -30,7 +30,7 @@ const server = app.listen(process.env.PORT || 5000, () => {
 
 const io = socket(server, {
     cors: {
-        origin: "chatroom2005.netlify.app", // ✅ frontend origin
+        origin: "https://chatroom2005.netlify.app/", // ✅ frontend origin
         credentials: true,
     },
 });
